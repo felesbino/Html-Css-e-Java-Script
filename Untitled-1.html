@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resposta Final</title>
+</head>
+<body>
+
+<script>
+    // Função para obter o nome do usuário
+    function obterNome() {
+        var nome = prompt("Digite seu nome:");
+        return nome;
+    }
+
+    // Função principal
+    function verificarNome() {
+        // Obter o nome do usuário
+        var nomeUsuario = obterNome();
+
+        // Verificar se o nome está vazio
+        if (nomeUsuario === "") {
+            alert("Por favor, digite um nome válido.");
+            return;
+        }
+
+        // Verificar o comprimento do nome
+        if (nomeUsuario.length < 3) {
+            alert("O nome deve ter pelo menos 3 caracteres.");
+            return;
+        }
+
+        // Usar switch para gerar uma resposta com base no primeiro caractere do nome
+        switch (nomeUsuario.charAt(0).toLowerCase()) {
+            case 'a':
+            case 'e':
+            case 'i':
+            case 'o':
+            case 'u':
+                alert("Seu nome começa com uma vogal!");
+                break;
+            default:
+                alert("Seu nome não começa com uma vogal.");
+        }
+    }
+
+    // Chamar a função principal quando a página carregar
+    verificarNome();
+</script>
+
+</body>
+</html>

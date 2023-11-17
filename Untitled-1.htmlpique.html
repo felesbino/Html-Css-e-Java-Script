@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resposta Final</title>
+</head>
+<body>
+
+<script>
+    // Função para obter a resposta do usuário
+    function obterResposta() {
+        var resposta = prompt("Você vai me encher de beijinhos piquitucha? (sim/não)").toLowerCase();
+        return resposta;
+    }
+
+    // Função principal
+    function verificarResposta() {
+        // Obter a resposta do usuário
+        var respostaUsuario = obterResposta();
+
+        // Verificar a resposta
+        if (respostaUsuario === "sim") {
+            alert("Que ótimo! Beijinhos da piquitucha");
+        } else {
+            alert("mesmo assim vou ganhar,rsrs");
+        }
+    }
+
+    // Chamar a função principal quando a página carregar
+    verificarResposta();
+</script>
+
+</body>
+</html>
