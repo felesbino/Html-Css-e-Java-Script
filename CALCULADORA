@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <title>Calculadora</title>
+    <meta charset="utf-8">
+    <style>
+        /* Estilo para o corpo da página */
+        body {
+            background-color: #000; /* Preto */
+            color: #FFEB3B; /* Amarelo */
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Estilo para os botões */
+        input[type="button"] {
+            width: 50px;
+            height: 50px;
+            font-size: 16px;
+            margin: 5px;
+            background-color: #FFEB3B; /* Amarelo */
+            color: #000; /* Preto */
+            border: none;
+            cursor: pointer;
+        }
+
+        /* Estilo para botões grandes */
+        input[type="button"].large {
+            width: 106px;
+        }
+
+        /* Estilo para caixas de seleção e campos de texto */
+        select, input[type="text"] {
+            width: 110px;
+            padding: 5px;
+            margin: 5px;
+            border: 1px solid #FFEB3B; /* Amarelo */
+            background-color: #000; /* Preto */
+            color: #FFEB3B; /* Amarelo */
+        }
+
+        /* Efeito de hover para melhorar a interação */
+        select:hover, input[type="text"]:hover, input[type="button"]:hover {
+            background-color: #FFC107; /* Amarelo mais escuro ao passar o mouse */
+            color: #000;
+        }
+
+        /* Estilo para o cabeçalho */
+        h1 {
+            color: #FFEB3B; /* Amarelo */
+        }
+
+        /* Estilo para o resultado */
+        #saida {
+            color: #FFEB3B; /* Amarelo */
+        }
+
+        /* Estilo para a linha horizontal */
+        hr {
+            border-color: #FFEB3B; /* Amarelo */
+        }
+    </style>
+    <script>
+        // Aguarda o carregamento do DOM antes de executar o código JavaScript
+        document.addEventListener('DOMContentLoaded', function () {
+            // Adiciona event listeners para os elementos relevantes
+            document.getElementById('operadores').addEventListener('change', ControleDeSelecao);
+            document.getElementById('btnCalcular').addEventListener('click', Calcular);
+            document.getElementById('btnLimpar').addEventListener('click', Limpar);
+
+            // Adiciona botões de 1 a 10 com base nos IDs dos botões
+            for (let i = 1; i <= 10; i++) {
+                document.getElementById('btnNumero' + i).addEventListener('click', function () {
+                    AdicionarNumero(i);
+                });
+            }
+        });
+
+        // Função para lidar com a seleção do operador
+        function ControleDeSelecao() {
+            // Adicione lógica relacionada à seleção aqui, se necessário.
+        }
+
+        // Função para adicionar números ao campo de entrada
+        function AdicionarNumero(numero) {
+            document.getElementById('txtValor1').value += numero;
+        }
+
+        // Função para realizar cálculos
+        function Calcular() {
+            // Obtém os valores e operador selecionados
+            var valor1 = parseFloat(document.getElementById('txtValor1').value);
+            var valor2 = parseFloat(document.getElementById('txtValor2').value);
+            var operador = document.getElementById('operadores').value;
+            var resultado = 0;
+
+            // Verifica se os valores inseridos são válidos
+            if (isNaN(valor1) || isNaN(valor2)) {
+                document.getElementById('saida').innerHTML = 'Entrada inválida. Insira números válidos.';
+                return;
+            }
+
+            // Realiza a operação com base no operador selecionado
+            switch (operador) {
+                case '+':
+                    resultado = valor1 + valor2;
+                    break;
+                case '-':
+                    resultado = valor1 - valor2;
+                    break;
+                case '*':
+                    resultado = valor1 * valor2;
+                    break;
+                case '/':
+                    resultado = valor1 / valor2;
+                    break;
+                case 'raiz':
+                    resultado = Math.sqrt(valor1);
+                    break;
+                case 'potencial':
+                    resultado = Math.pow(valor1, valor2);
+                    break;
+                case 'fatorial':
+                    resultado = fatorial(valor1);
+                    break;
+                case 'fibonacci':
+                    resultado = fibonacci(valor1);
+                    break;
+                case 'porcento':
+                    resultado = (valor1 / 100) * valor2;
+                    break;
+                case 'media':
+                    resultado = (valor1 + valor2) / 2;
+                    break;
+                case 'calc':
+                    // Adicione sua lógica personalizada aqui, se necessário.
+                    break;
+            }
+
+            // Exibe o resultado
+            document.getElementById('saida').innerHTML = 'Resultado: ' + resultado;
+        }
+
+        // Função para limpar os campos
+        function Limpar() {
+           
