@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BraSucaria</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        header {
+            background-color: #333;
+            color: #fff;
+            padding: 10px;
+            text-align: center;
+        }
+
+        nav {
+            background-color: #444;
+            color: #fff;
+            padding: 10px;
+            text-align: center;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #fff;
+            margin: 0 15px;
+            font-size: 18px;
+        }
+
+        section {
+            padding: 20px;
+            text-align: center;
+        }
+
+        article {
+            margin-bottom: 20px;
+            padding: 10px;
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        footer {
+            background-color: #333;
+            color: #fff;
+            padding: 10px;
+            text-align: center;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        #cart {
+            position: fixed;
+            top: 50px;
+            right: 50px;
+            background-color: #fff;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <h1>BraSucaria</h1>
+    </header>
+
+    <nav>
+        <a href="#">Inicio</a>
+        <a href="#">Cardápio</a>
+        <a href="#">Contato</a>
+    </nav>
+
+    <section>
+        <article>
+            <h2>Feijoada</h2>
+            <p>Um prato típico brasileiro...</p>
+            <button onclick="adicionarAoCarrinho('Feijoada', 20.99)">Adicionar ao Carrinho</button>
+        </article>
+
+        <article>
+            <h2>Acarajé</h2>
+            <p>Uma deliciosa iguaria da Bahia...</p>
+            <button onclick="adicionarAoCarrinho('Acarajé', 15.99)">Adicionar ao Carrinho</button>
+        </article>
+
+        <!-- Adicionando mais 13 pratos -->
+        <!-- ... (seus outros pratos) ... -->
+
+    </section>
+
+    <div id="cart">
+        <h2>Carrinho de Compras</h2>
+        <ul id="cart-items"></ul>
+        <p id="total">Total: R$ 0.00</p>
+        <button onclick="limparCarrinho()">Limpar Carrinho</button>
+        <button onclick="finalizarCompra()">Finalizar Compra</button>
+    </div>
+
+    <footer>
+        &copy; 2023 BraSucaria
+    </footer>
+
+    <script>
+        let cartItems = [];
+        let total = 0;
+
+        function adicionarAoCarrinho(item, preco) {
+            cartItems.push({ item, preco });
+            total += preco;
+            atualizarCarrinho();
+        }
+
+        function atualizarCarrinho() {
+            const cartList = document.getElementById('cart-items');
+            const totalElement = document.getElementById('total');
+
+            // Limpa a lista
+            cartList.innerHTML = '';
+
+            // Adiciona itens ao carrinho
+            cartItems.forEach(item => {
+                const li = document.createElement('li');
+                li.textContent = `${item.item} - R$${item.preco.toFixed(2)}`;
+                cartList.appendChild(li);
+            });
+
+            // Atualiza o total
+            totalElement.textContent = `Total: R$${total.toFixed(2)}`;
+        }
+
+        function finalizarCompra() {
+            // Simplesmente redireciona para a página de forma de pagamento
+            window.location.href = 'pagamento.html';
+        }
+
+        function limparCarrinho() {
+            // Limpa a lista de itens no carrinho
+            cartItems = [];
+            total = 0;
+            atualizarCarrinho();
+        }
+    </script>
+
+</body>
+
+</html>
+
